@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"golang-pdf-generator/htmlParser"
 	"golang-pdf-generator/pdfGenerator"
+	"os"
 )
 
 type Data struct {
@@ -27,6 +28,7 @@ func main() {
 	}
 
 	fmt.Println("HTML file generated:", htmlGenerated)
+	defer os.Remove(htmlGenerated)
 
 	pdfGenerated, err := wk.Create(htmlGenerated, "test")
 	if err != nil {
