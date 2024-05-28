@@ -10,7 +10,7 @@ type htmlStruct struct {
 	rootPath string
 }
 
-func New(rootPath string) (HtmlParser, error) {
+func New(rootPath string) (HtmlParserInterface, error) {
 	if _, err := os.Stat(rootPath); os.IsNotExist(err) {
 		if err := os.MkdirAll(rootPath, os.ModePerm); err != nil {
 			return nil, fmt.Errorf("failed to create directory: %w", err)

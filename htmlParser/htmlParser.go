@@ -1,5 +1,5 @@
 package htmlParser
 
-type HtmlParser interface {
+type HtmlParserInterface interface {
 	Create(templateName, fileName string, data interface{}) (string, error)
 }
