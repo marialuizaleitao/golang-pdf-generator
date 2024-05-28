@@ -1,13 +1,13 @@
 package pdfGenerator
 
-type wkhtml struct {
+type wk struct {
 	rootPath string
 }
 
-func New(rootPath string) PDFGeneratorInterface {
-	return &wkhtml{rootPath: rootPath}
+func NewWkHtmlToPDF(rootPath string) PDFGeneratorInterface {
+	return &wk{rootPath: rootPath}
 }
 
-func (w *wkhtml) Create(htmlFile string) (string, error) {
+func (w *wk) Create(htmlFile string) (string, error) {
 	return "", nil
 }
