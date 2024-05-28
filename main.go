@@ -5,6 +5,10 @@ import (
 	"golang-pdf-generator/htmlParser"
 )
 
+type Data struct {
+	Name string
+}
+
 func main() {
 	h, err := htmlParser.New("tmp")
 	if err != nil {
@@ -12,7 +16,9 @@ func main() {
 		return
 	}
 
-	fileName, err := h.Create("templates/index.html", "test", nil)
+	dataHTML := Data{Name: "Maria"}
+
+	fileName, err := h.Create("templates/index.html", "test", dataHTML)
 	if err != nil {
 		fmt.Println("Error generating HTML file:", err)
 		return
