@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"golang-pdf-generator/htmlParser"
+	"golang-pdf-generator/pdfGenerator"
 )
 
 type Data struct {
@@ -10,6 +11,7 @@ type Data struct {
 }
 
 func main() {
+	wk := pdfGenerator.NewWkHtmlToPDF("tmp")
 	h, err := htmlParser.New("tmp")
 	if err != nil {
 		fmt.Println("Error creating HTML parser:", err)
@@ -18,11 +20,19 @@ func main() {
 
 	dataHTML := Data{Name: "Maria"}
 
-	fileName, err := h.Create("templates/index.html", "test", dataHTML)
+	htmlGenerated, err := h.Create("templates/index.html", "test", dataHTML)
 	if err != nil {
 		fmt.Println("Error generating HTML file:", err)
 		return
 	}
 
-	fmt.Println("HTML file generated:", fileName)
+	fmt.Println("HTML file generated:", htmlGenerated)
+
+	pdfGenerated, err := wk.Create(htmlGenerated, "test")
+	if err != nil {
+		fmt.Println("Error generating PDF:", err)
+		return
+	}
+
+	fmt.Println("PDF generated:", pdfGenerated)
 }

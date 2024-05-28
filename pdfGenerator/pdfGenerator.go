@@ -1,5 +1,5 @@
 package pdfGenerator
 
 type PDFGeneratorInterface interface {
-	Create(fileName string) (string, error)
+	Create(htmlFile, fileName string) (string, error)
 }
